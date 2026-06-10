@@ -1,0 +1,29 @@
+{
+  "name": "worldcup-display",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Windows desktop World Cup live score display - Dynamic Island style",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "electron:dev": "concurrently \"vite\" \"wait-on http://localhost:5173 && electron .\"",
+    "electron:build": "vite build && electron-builder"
+  },
+  "dependencies": {
+    "axios": "^1.17.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zustand": "^4.5.7"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.7.0",
+    "autoprefixer": "^10.5.0",
+    "concurrently": "^8.2.2",
+    "electron": "^33.0.0",
+    "postcss": "^8.5.15",
+    "tailwindcss": "^3.4.19",
+    "vite": "^5.4.21",
+    "wait-on": "^7.2.0"
+  }
+}
