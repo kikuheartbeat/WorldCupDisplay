@@ -1,4 +1,4 @@
-# 🏆 World Cup Display
+# World Cup Display
 
 <div align="center">
 
@@ -8,160 +8,81 @@
 <img src="https://img.shields.io/badge/Vite-5-646CFF?style=for-the-badge&logo=vite" />
 <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" />
 
-### ⚽ Windows 桌面世界杯实时比分组件
+### Windows 桌面世界杯实时比分悬浮窗
 
-**Dynamic Island 风格悬浮比分助手**  
-实时追踪世界杯赛事、进球提醒与赛程动态
+**Dynamic Island 风格 · 国旗展示 · 进球提醒 · 赛程轮播**
 
 </div>
 
 ---
 
-## ✨ 项目简介
+## 项目简介
 
-World Cup Display 是一个基于 **Electron + React** 构建的 Windows 桌面足球赛事组件。
+World Cup Display 是一个基于 **Electron + React** 的 Windows 桌面足球赛事悬浮组件，以 **Apple Dynamic Island（灵动岛）** 风格的胶囊窗口常驻桌面顶部，在不影响日常工作的同时提供实时赛事信息。
 
-应用以类似 **Apple Dynamic Island（灵动岛）** 的悬浮胶囊形式常驻桌面右上角，在不影响工作的情况下实时展示：
+### 核心特性
 
-- 🔴 正在进行的比赛
-- ⚽ 实时比分变化
-- 🚨 进球事件提醒
-- 📅 当日赛事赛程
-- 🔄 多场比赛自动轮播
-
-让用户无需打开浏览器或直播网站，即可第一时间获取世界杯比赛动态。
-
----
-
-## 🎯 核心特性
-
-### 🏝️ Dynamic Island 风格悬浮窗
-
-- 无边框透明窗口
-- 始终置顶显示
-- 胶囊式现代化设计
-- 不影响日常办公和学习
-
-### ⚽ 实时比分更新
-
-- 自动同步世界杯赛事数据
-- 显示实时比分
-- 展示比赛状态与时间
-
-### 🚨 进球动画提醒
-
-当检测到进球事件时：
-
-- 自动弹出通知动画
-- 显示进球球员
-- 显示助攻球员
-- 实时更新比分
-
-### 📋 展开式赛事面板
-
-点击悬浮窗即可展开：
-
-- 进行中的比赛
-- 已结束比赛
-- 即将开始比赛
-- 完整赛事信息
-
-### 🔄 多场比赛轮播
-
-支持同时展示多场直播赛事：
-
-- 自动轮播切换
-- 无需手动操作
-- 保持信息实时更新
-
-### 🖥️ 系统托盘支持
-
-- 最小化到系统托盘
-- 隐藏/显示窗口
-- 后台持续运行
-- 一键退出应用
+- **国旗展示** — 使用高清国旗图片替代系统 emoji，在 Windows 上完美渲染各国/地区国旗
+- **实时比分** — 自动同步世界杯赛事数据，显示实时比分与比赛时间
+- **进球提醒** — 检测到进球时弹出动画通知，显示进球球员与助攻信息
+- **展开面板** — 点击悬浮窗展开完整赛事面板，分为进行中、已结束、即将开始三个区域
+- **多场轮播** — 同时有多场直播赛事时自动轮播切换
+- **系统托盘** — 最小化到系统托盘，后台持续运行
 
 ---
 
-## 📸 应用预览
+## 技术栈
 
-> 建议放置以下截图：
-
-```text
-docs/
-├── preview-main.png
-├── preview-expanded.png
-└── goal-popup.png
-```
-
-### 主界面
-
-![主界面](docs/preview-main.png)
-
-### 展开面板
-
-![展开面板](docs/preview-expanded.png)
-
-### 进球提醒
-
-![进球提醒](docs/goal-popup.png)
+| 技术 | 用途 |
+|---|---|
+| Electron 33 | Windows 桌面应用容器 |
+| React 18 | UI 框架 |
+| Vite 5 | 构建工具 |
+| Zustand | 状态管理 |
+| Tailwind CSS 3 | 样式系统 |
+| Axios | HTTP 请求 |
+| Football-Data.org API | 实时赛事数据 |
+| FlagCDN | 国旗图片 CDN |
 
 ---
 
-## 🛠️ 技术架构
-
-| 技术 | 作用 |
-|--------|--------|
-| Electron | Windows 桌面应用容器 |
-| React 18 | UI 构建 |
-| Vite 5 | 项目构建工具 |
-| Zustand | 全局状态管理 |
-| Tailwind CSS | 样式系统 |
-| Axios | 网络请求 |
-| Football-Data API | 实时赛事数据源 |
-
----
-
-## 🚀 快速开始
+## 快速开始
 
 ### 环境要求
 
-```bash
-Node.js >= 18
-npm >= 9
-```
+- Node.js >= 18
+- npm >= 9
 
-### 1️⃣ 克隆项目
+### 1. 克隆项目
 
 ```bash
 git clone https://github.com/your-name/WorldCupDisplay.git
-
 cd WorldCupDisplay
 ```
 
-### 2️⃣ 安装依赖
+### 2. 安装依赖
 
 ```bash
 npm install
 ```
 
-### 3️⃣ 配置 API Token
-
-复制环境变量文件：
+### 3. 配置 API Token
 
 ```bash
 cp .env.example .env
 ```
 
-修改 `.env`：
+编辑 `.env`，填入你的 Football-Data.org API Token：
 
 ```env
 VITE_FOOTBALL_DATA_TOKEN=YOUR_TOKEN
 ```
 
+> 免费注册获取 Token：[football-data.org](https://www.football-data.org/)
+
 ---
 
-## 💻 开发运行
+## 开发
 
 ### Web 模式
 
@@ -169,7 +90,7 @@ VITE_FOOTBALL_DATA_TOKEN=YOUR_TOKEN
 npm run dev
 ```
 
-### Electron 模式
+### Electron 桌面模式
 
 ```bash
 npm run electron:dev
@@ -177,7 +98,7 @@ npm run electron:dev
 
 ---
 
-## 📦 打包发布
+## 打包
 
 生成 Windows 安装包：
 
@@ -185,132 +106,103 @@ npm run electron:dev
 npm run electron:build
 ```
 
-构建产物通常位于：
+构建产物位于 `dist/` 或 `release/` 目录。
+
+---
+
+## 项目结构
 
 ```text
-dist/
-release/
+WorldCupDisplay/
+├── electron/
+│   ├── main.cjs              # Electron 主进程
+│   └── preload.cjs           # 预加载脚本
+├── src/
+│   ├── components/
+│   │   ├── DynamicIsland.jsx  # 胶囊悬浮窗（Live/Upcoming/空闲）
+│   │   ├── ExpandedPanel.jsx  # 展开式赛事面板
+│   │   ├── MatchCard.jsx      # 单场赛事卡片
+│   │   └── GoalPopup.jsx      # 进球动画弹窗
+│   ├── hooks/
+│   │   └── useGoalDetector.js # 进球检测 Hook
+│   ├── services/
+│   │   └── api.js             # API 请求、数据映射、国旗 URL 生成
+│   ├── store/
+│   │   └── useStore.js        # Zustand 全局状态
+│   ├── styles/
+│   │   └── index.css          # 全局样式
+│   ├── App.jsx                # 根组件
+│   └── main.jsx               # React 入口
+├── assets/
+│   └── tray-icon.png          # 系统托盘图标
+├── .env.example               # 环境变量示例
+├── package.json
+├── vite.config.js
+└── tailwind.config.js
 ```
 
 ---
 
-## 🔑 数据源说明
+## 数据流
 
-项目使用 Football-Data.org 提供的赛事接口。
+```text
+Football-Data.org API
+        │
+        ▼
+   api.js (mapMatch → getFlagUrl)
+        │
+        ▼
+  Zustand Store
+        │
+   ┌────┼────────────┐
+   ▼    ▼            ▼
+ Island Panel   GoalDetector
+ 悬浮窗 展开面板  进球检测
+```
 
-### 获取 Token
+### 国旗显示机制
 
-1. 注册 Football-Data.org
-2. 获取 API Token
-3. 填写到 `.env` 文件
+项目使用 [FlagCDN](https://flagcdn.com) 提供高清国旗图片。`api.js` 中的 `TLA_TO_ISO` 映射表将 FIFA 三字母国家代码（如 `ARG`）转换为 ISO 3166-1 两位代码（如 `ar`），再拼接为 CDN URL：
 
-### 免费版限制
+```
+https://flagcdn.com/w80/ar.png  ← 阿根廷国旗
+https://flagcdn.com/w80/br.png  ← 巴西国旗
+```
+
+对于未匹配的国家代码，显示地球 emoji `🌐` 作为占位符。
+
+---
+
+## API 限制
+
+Football-Data.org 免费版限制：
 
 | 项目 | 限制 |
-|--------|--------|
+|---|---|
 | 请求频率 | 10 次/分钟 |
-| 当前策略 | 30 秒/次 |
-| 限流处理 | 自动重试 |
+| 应用轮询 | 30 秒/次 |
+| 限流处理 | 自动退避 |
 
-> ⚠️ 请勿将 Token 提交到 GitHub。
-
----
-
-## 📂 项目结构
-
-```text
-WorldCupDisplay
-│
-├─ electron
-│  ├─ main.cjs
-│  └─ preload.cjs
-│
-├─ src
-│  ├─ components
-│  │  ├─ DynamicIsland.jsx
-│  │  ├─ ExpandedPanel.jsx
-│  │  ├─ MatchCard.jsx
-│  │  └─ GoalPopup.jsx
-│  │
-│  ├─ hooks
-│  │  └─ useGoalDetector.js
-│  │
-│  ├─ services
-│  │  └─ api.js
-│  │
-│  ├─ store
-│  │  └─ useStore.js
-│  │
-│  ├─ styles
-│  │  └─ index.css
-│  │
-│  ├─ App.jsx
-│  └─ main.jsx
-│
-├─ assets
-│  └─ tray-icon.png
-│
-├─ .env.example
-├─ package.json
-├─ vite.config.js
-└─ tailwind.config.js
-```
+> 请勿将 API Token 提交到 Git 仓库。
 
 ---
 
-## ⚙️ 数据流
+## 贡献
 
-```text
-Football-Data API
-        │
-        ▼
-   api.js
-        │
-        ▼
- Zustand Store
-        │
- ┌──────┼──────────────┐
- ▼      ▼              ▼
-Island Panel     GoalDetector
-窗口    面板       进球检测
-```
----
+欢迎提交 Issue、Pull Request 或功能建议。
 
-## 🌟 未来规划
-
-- [ ] 世界杯赛程订阅
-- [ ] 自定义球队关注
-- [ ] Windows 通知中心集成
-- [ ] 多语言支持
-- [ ] 深色 / 浅色主题切换
-- [ ] 数据缓存优化
-- [ ] FIFA 排名展示
+如果觉得项目有用，欢迎给一个 ⭐ Star。
 
 ---
 
-## 🤝 贡献
+## License
 
-欢迎提交：
-
-- Issue
-- Pull Request
-- 功能建议
-- UI 优化方案
-
-如果这个项目对你有帮助，欢迎点一个 ⭐ Star。
-
----
-
-## 📄 License
-
-本项目采用 MIT License 开源。
+MIT
 
 ---
 
 <div align="center">
 
-### ⚽ Never Miss A Goal
-
-实时关注世界杯每一个精彩瞬间
+**⚽ Never Miss A Goal**
 
 </div>

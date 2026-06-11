@@ -34,7 +34,11 @@ export default function MatchCard({ match }) {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2.5 flex-1 justify-end">
           <span className="text-white font-medium text-sm text-right leading-tight">{homeName}</span>
-          <span className="text-xl">{homeFlag}</span>
+          {homeFlag ? (
+            <img src={homeFlag} alt={homeName} className="w-7 h-5 object-cover rounded-sm" />
+          ) : (
+            <span className="text-xl">🌐</span>
+          )}
         </div>
 
         <div className="flex flex-col items-center mx-3 shrink-0 min-w-[60px]">
@@ -43,7 +47,11 @@ export default function MatchCard({ match }) {
         </div>
 
         <div className="flex items-center gap-2.5 flex-1">
-          <span className="text-xl">{awayFlag}</span>
+          {awayFlag ? (
+            <img src={awayFlag} alt={awayName} className="w-7 h-5 object-cover rounded-sm" />
+          ) : (
+            <span className="text-xl">🌐</span>
+          )}
           <span className="text-white font-medium text-sm text-left leading-tight">{awayName}</span>
         </div>
       </div>

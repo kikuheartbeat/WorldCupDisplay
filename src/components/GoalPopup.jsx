@@ -24,13 +24,21 @@ export default function GoalPopup({ event, index, onDismiss }) {
         </div>
 
         <div className="flex items-center gap-2 mb-1.5">
-          <span className="text-base">{event.homeFlag}</span>
+          {event.homeFlag ? (
+            <img src={event.homeFlag} alt={event.homeName} className="w-5 h-3.5 object-cover rounded-sm" />
+          ) : (
+            <span className="text-base">🌐</span>
+          )}
           <span className="text-white/70 text-xs">{event.homeName}</span>
           <span className="text-white font-bold text-lg ml-auto tabular-nums">{event.homeScore}</span>
           <span className="text-white/40 text-sm">-</span>
           <span className="text-white font-bold text-lg tabular-nums">{event.awayScore}</span>
           <span className="text-white/70 text-xs mr-0">{event.awayName}</span>
-          <span className="text-base">{event.awayFlag}</span>
+          {event.awayFlag ? (
+            <img src={event.awayFlag} alt={event.awayName} className="w-5 h-3.5 object-cover rounded-sm" />
+          ) : (
+            <span className="text-base">🌐</span>
+          )}
         </div>
 
         <div className="flex items-center gap-1.5">

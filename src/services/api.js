@@ -3,19 +3,24 @@ import axios from 'axios';
 const API_TOKEN = import.meta.env.VITE_FOOTBALL_DATA_TOKEN || '';
 const BASE_URL = 'https://api.football-data.org/v4';
 
-const TEAM_FLAGS = {
-  ARG: '🇦🇷', BRA: '🇧🇷', FRA: '🇫🇷', GER: '🇩🇪', ENG: '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
-  ESP: '🇪🇸', POR: '🇵🇹', NED: '🇳🇱', ITA: '🇮🇹', USA: '🇺🇸',
-  MEX: '🇲🇽', CAN: '🇨🇦', JPN: '🇯🇵', KOR: '🇰🇷', MAR: '🇲🇦',
-  SEN: '🇸🇳', URU: '🇺🇾', URY: '🇺🇾', COL: '🇨🇴', CRO: '🇭🇷',
-  BEL: '🇧🇪', DEN: '🇩🇰', SUI: '🇨🇭', AUS: '🇦🇺', KSA: '🇸🇦',
-  RSA: '🇿🇦', CZE: '🇨🇿', BIH: '🇧🇦', PAR: '🇵🇾', QAT: '🇶🇦',
-  HAI: '🇭🇹', SCO: '🏴󠁧󠁢󠁳󠁣󠁴󠁿', TUR: '🇹🇷', CUW: '🇨🇼', CIV: '🇨🇮',
-  ECU: '🇪🇨', SWE: '🇸🇪', TUN: '🇹🇳', CPV: '🇨🇻', EGY: '🇪🇬',
-  IRN: '🇮🇷', NZL: '🇳🇿', IRQ: '🇮🇶', NOR: '🇳🇴', ALG: '🇩🇿',
-  AUT: '🇦🇹', JOR: '🇯🇴', COD: '🇨🇩', GHA: '🇬🇭', PAN: '🇵🇦',
-  UZB: '🇺🇿',
+const TLA_TO_ISO = {
+  ARG: 'ar', BRA: 'br', FRA: 'fr', GER: 'de', ENG: 'gb-eng',
+  ESP: 'es', POR: 'pt', NED: 'nl', ITA: 'it', USA: 'us',
+  MEX: 'mx', CAN: 'ca', JPN: 'jp', KOR: 'kr', MAR: 'ma',
+  SEN: 'sn', URU: 'uy', URY: 'uy', COL: 'co', CRO: 'hr',
+  BEL: 'be', DEN: 'dk', SUI: 'ch', AUS: 'au', KSA: 'sa',
+  RSA: 'za', CZE: 'cz', BIH: 'ba', PAR: 'py', QAT: 'qa',
+  HAI: 'ht', SCO: 'gb-sct', TUR: 'tr', CUW: 'cw', CIV: 'ci',
+  ECU: 'ec', SWE: 'se', TUN: 'tn', CPV: 'cv', EGY: 'eg',
+  IRN: 'ir', NZL: 'nz', IRQ: 'iq', NOR: 'no', ALG: 'dz',
+  AUT: 'at', JOR: 'jo', COD: 'cd', GHA: 'gh', PAN: 'pa',
+  UZB: 'uz',
 };
+
+function getFlagUrl(tla) {
+  const iso = TLA_TO_ISO[tla];
+  return iso ? `https://flagcdn.com/w80/${iso}.png` : null;
+}
 
 let rateLimitInfo = { available: null, resetSeconds: null };
 
@@ -65,8 +70,8 @@ function mapMatch(apiMatch) {
     awayTeam: awayTLA,
     homeName: apiMatch.homeTeam.shortName || apiMatch.homeTeam.name,
     awayName: apiMatch.awayTeam.shortName || apiMatch.awayTeam.name,
-    homeFlag: TEAM_FLAGS[homeTLA] || '🌐',
-    awayFlag: TEAM_FLAGS[awayTLA] || '🌐',
+    homeFlag: getFlagUrl(homeTLA),
+    awayFlag: getFlagUrl(awayTLA),
     kickoffTime: formatKickoffTime(apiMatch.utcDate),
     status,
     homeScore: apiMatch.score?.fullTime?.home ?? null,

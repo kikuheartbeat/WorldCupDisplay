@@ -5,7 +5,11 @@ function LiveMatchPill({ match }) {
   return (
     <div className="flex items-center justify-center gap-3 w-full h-full px-5">
       <div className="flex items-center gap-2 flex-1 justify-end">
-        <span className="text-lg">{match.homeFlag}</span>
+        {match.homeFlag ? (
+          <img src={match.homeFlag} alt={match.homeName} className="w-6 h-4 object-cover rounded-sm" />
+        ) : (
+          <span className="text-lg">🌐</span>
+        )}
         <span className="text-white font-semibold text-sm truncate max-w-[80px] text-right">
           {match.homeName}
         </span>
@@ -25,7 +29,11 @@ function LiveMatchPill({ match }) {
         <span className="text-white font-semibold text-sm truncate max-w-[80px] text-left">
           {match.awayName}
         </span>
-        <span className="text-lg">{match.awayFlag}</span>
+        {match.awayFlag ? (
+          <img src={match.awayFlag} alt={match.awayName} className="w-6 h-4 object-cover rounded-sm" />
+        ) : (
+          <span className="text-lg">🌐</span>
+        )}
       </div>
 
       <div className="shrink-0 flex items-center gap-1.5">
@@ -40,7 +48,11 @@ function UpcomingPill({ match }) {
   return (
     <div className="flex items-center justify-center gap-3 w-full h-full px-5">
       <div className="flex items-center gap-2 flex-1 justify-end">
-        <span className="text-lg">{match.homeFlag}</span>
+        {match.homeFlag ? (
+          <img src={match.homeFlag} alt={match.homeName} className="w-6 h-4 object-cover rounded-sm" />
+        ) : (
+          <span className="text-lg">🌐</span>
+        )}
         <span className="text-white font-semibold text-sm truncate max-w-[80px] text-right">
           {match.homeName}
         </span>
@@ -55,7 +67,11 @@ function UpcomingPill({ match }) {
         <span className="text-white font-semibold text-sm truncate max-w-[80px] text-left">
           {match.awayName}
         </span>
-        <span className="text-lg">{match.awayFlag}</span>
+        {match.awayFlag ? (
+          <img src={match.awayFlag} alt={match.awayName} className="w-6 h-4 object-cover rounded-sm" />
+        ) : (
+          <span className="text-lg">🌐</span>
+        )}
       </div>
     </div>
   );
