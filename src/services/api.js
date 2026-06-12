@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API_TOKEN = import.meta.env.VITE_FOOTBALL_DATA_TOKEN || '';
-const BASE_URL = 'https://api.football-data.org/v4';
+const BASE_URL = import.meta.env.DEV ? '/api' : 'https://api.football-data.org/v4';
 
 const TLA_TO_ISO = {
   ARG: 'ar', BRA: 'br', FRA: 'fr', GER: 'de', ENG: 'gb-eng',
@@ -98,7 +98,7 @@ function daysFromNow(n) {
 }
 
 export async function getMatches() {
-  const from = todayStr();
+  const from = daysFromNow(-3);
   const to = daysFromNow(7);
 
   const { data } = await client.get('/competitions/WC/matches', {
