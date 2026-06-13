@@ -38,7 +38,9 @@ function LiveMatchPill({ match }) {
 
       <div className="shrink-0 flex items-center gap-1.5">
         <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-        <span className="text-red-400 text-xs font-medium tabular-nums">{match.minute}&apos;</span>
+        <span className="text-red-400 text-xs font-medium tabular-nums">
+          {match.minute != null ? `${match.minute}'` : 'LIVE'}
+        </span>
       </div>
     </div>
   );
@@ -130,7 +132,7 @@ export default function DynamicIsland({ onExpand }) {
 
       {goalEvents.map((event, i) => (
         <GoalPopup
-          key={`${event.matchId}-${event.minute}-${event.scorer}`}
+          key={`${event.matchId}-${event.minute}-${event.player}`}
           event={event}
           index={i}
           onDismiss={() => dismissGoalEvent(i)}

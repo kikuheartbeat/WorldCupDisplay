@@ -42,7 +42,7 @@ export default function GoalPopup({ event, index, onDismiss }) {
         </div>
 
         <div className="flex items-center gap-1.5">
-          <span className="text-white font-semibold text-sm">{event.scorer}</span>
+          <span className="text-white font-semibold text-sm">{event.player}</span>
           {event.assist && (
             <>
               <span className="text-white/30 text-xs">assist:</span>

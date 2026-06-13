@@ -59,6 +59,10 @@ function formatKickoffTime(utcDate) {
   return `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
 }
 
+function localDateStr(d) {
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+
 function mapMatch(apiMatch) {
   const homeTLA = apiMatch.homeTeam.tla;
   const awayTLA = apiMatch.awayTeam.tla;
@@ -74,6 +78,10 @@ function mapMatch(apiMatch) {
     awayFlag: getFlagUrl(awayTLA),
     kickoffTime: formatKickoffTime(apiMatch.utcDate),
     status,
+    stage: apiMatch.stage || null,
+    group: apiMatch.group || null,
+    matchday: apiMatch.matchday || null,
+    date: apiMatch.utcDate ? localDateStr(new Date(apiMatch.utcDate)) : null,
     homeScore: apiMatch.score?.fullTime?.home ?? null,
     awayScore: apiMatch.score?.fullTime?.away ?? null,
     minute: status === 'live' ? (apiMatch.minute ?? null) : null,
@@ -97,6 +105,8 @@ function daysFromNow(n) {
   return d.toISOString().split('T')[0];
 }
 
+let knownScorers = {};
+
 export async function getMatches() {
   const from = daysFromNow(-3);
   const to = daysFromNow(7);
@@ -108,8 +118,39 @@ export async function getMatches() {
   return data.matches.map(mapMatch);
 }
 
-export function getGoalEvents() {
-  return [];
+export function getGoalEvents(matches) {
+  const events = [];
+  for (const match of matches) {
+    if (match.status !== 'live' || !match.scorers?.length) continue;
+
+    const prevKeys = knownScorers[match.id] || new Set();
+
+    for (const s of match.scorers) {
+      const key = `${s.player}-${s.minute}-${s.team}`;
+      if (!prevKeys.has(key)) {
+        events.push({
+          matchId: match.id,
+          player: s.player,
+          minute: s.minute,
+          assist: s.assist,
+          team: s.team,
+          homeTeam: match.homeTeam,
+          awayTeam: match.awayTeam,
+          homeName: match.homeName,
+          awayName: match.awayName,
+          homeFlag: match.homeFlag,
+          awayFlag: match.awayFlag,
+          homeScore: match.homeScore,
+          awayScore: match.awayScore,
+        });
+      }
+    }
+
+    knownScorers[match.id] = new Set(
+      match.scorers.map((s) => `${s.player}-${s.minute}-${s.team}`),
+    );
+  }
+  return events;
 }
 
 export function getRateLimitInfo() {

@@ -26,10 +26,11 @@ const useStore = create((set, get) => ({
 
     fetchMatches();
 
-    setInterval(fetchMatches, 30000);
+    setInterval(fetchMatches, 15000);
 
     setInterval(() => {
-      const events = getGoalEvents();
+      const { matches: current } = get();
+      const events = getGoalEvents(current);
       if (events.length > 0) {
         set((state) => ({
           goalEvents: [...state.goalEvents, ...events],

@@ -3,7 +3,9 @@ function StatusBadge({ status, minute }) {
     return (
       <div className="flex items-center gap-1.5">
         <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-        <span className="text-red-400 text-xs font-medium">{minute}&apos;</span>
+        <span className="text-red-400 text-xs font-medium">
+          {minute != null ? `${minute}'` : 'LIVE'}
+        </span>
       </div>
     );
   }
